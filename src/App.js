@@ -1,9 +1,13 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
-import Home from "./components/pages/Home";
-import Product from "./components/pages/Product";
-import About from "./components/pages/About";
-import NotFound from "./components/pages/NotFound";
+import Home from "./components/containers/Home";
+import Product from "./components/containers/Product";
+import About from "./components/containers/About";
+import NotFound from "./components/containers/NotFound";
+import { useState, useEffect } from "react";
+import axios from "axios";
+
+
 
 function App() {
   return (
