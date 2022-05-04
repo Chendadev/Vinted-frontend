@@ -1,0 +1,15 @@
+.home {
+  display: flex;
+  flex-direction: row;
+}
+
+img {
+  width: 195px;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  border: solid salmon 2px;
+  padding: 10px;
+}
