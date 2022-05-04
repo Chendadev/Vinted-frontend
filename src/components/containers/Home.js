@@ -1,6 +1,9 @@
 import React from 'react'
 import { useState, useEffect } from "react";
 import axios from "axios";
+import {
+    Link
+} from "react-router-dom";
 
 export default function Home() {
     const [data, setData] = useState();
@@ -25,30 +28,27 @@ export default function Home() {
             <div className="home">
                 <h1>Bienvenue sur l'accueil</h1>
                 {data.offers.map((offer, index) => {
-                    console.log("yakoila", offer.product_details)
+                    const id = offer._id;
+                    // console.log("yakoila", offer)
                     return (
-                        <div className="card">
-                            {offer.product_pictures.map((product, num) => {
-                                return (
-                                    <div>
-                                        <img src={product.secure_url} />
-                                        <p>{product.product_price}</p>
-                                    </div>
+                        <Link to={`/offer/${id}`}>
+                            <div className="card">
+                                {offer.product_pictures[0] ?
+                                    <img src={offer.product_pictures[0].secure_url} />
+                                    : (null)}
+                                <p>{offer.product_price} €</p>
+                                {offer.product_details.map((item, num) => {
+                                    return (
+                                        <div>
+                                            <p>{item.ÉTAT}</p>
+                                            <p>{item.MARQUE}</p>
+                                        </div>
+                                    )
+                                })}
+                            </div></Link>
 
-                                )
-                            })}
-                            {offer.product_details.map((item, num) => {
-                                return (
-                                    <div>
-                                        <p>{item.ÉTAT}</p>
-                                        <p>{item.MARQUE}</p>
-                                    </div>
-
-                                )
-                            })}
-                        </div>
                     )
                 })}
-            </div>
+            </div >
         )
 };

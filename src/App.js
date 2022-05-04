@@ -1,7 +1,6 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import Home from "./components/containers/Home";
-import Product from "./components/containers/Product";
 import About from "./components/containers/About";
 import Offer from "./components/containers/Offer";
 import NotFound from "./components/containers/NotFound";
@@ -26,7 +25,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/offers" element={<Offer />} />
+          <Route path="/offer/:id" element={<Offer />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Router>
