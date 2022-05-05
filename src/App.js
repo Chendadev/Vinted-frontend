@@ -4,6 +4,9 @@ import Home from "./components/containers/Home";
 import About from "./components/containers/About";
 import Offer from "./components/containers/Offer";
 import NotFound from "./components/containers/NotFound";
+import Header from "./components/containers/Header";
+import Signup from "./components/containers/Signup";
+import Login from "./components/containers/Login";
 
 function App() {
   return (
@@ -12,7 +15,7 @@ function App() {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/header">Header</Link>
             </li>
             <li>
               <Link to="/about">About</Link>
@@ -24,6 +27,9 @@ function App() {
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/header" element={<Header />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/about" element={<About />} />
           <Route path="/offer/:id" element={<Offer />} />
           <Route path="*" element={<NotFound />} />

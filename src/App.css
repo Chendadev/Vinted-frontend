@@ -4,7 +4,8 @@
 }
 
 img {
-  width: 195px;
+  width: 197px;
+  height: 329px;
 }
 
 .card {
@@ -12,4 +13,18 @@ img {
   flex-direction: column;
   border: solid salmon 2px;
   padding: 10px;
+}
+.card p {
+  text-decoration: none;
+  line-height: 0.5px;
+}
+
+.infos_offer {
+  border: solid pink 2px;
+  color: black;
+}
+
+.header-div {
+  display: flex;
+  justify-content: space-around;
 }
