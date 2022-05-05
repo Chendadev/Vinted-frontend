@@ -6,11 +6,10 @@
 img {
   width: 197px;
   height: 329px;
+  object-fit: cover;
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
   border: solid salmon 2px;
   padding: 10px;
 }
