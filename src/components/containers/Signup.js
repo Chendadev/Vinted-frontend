@@ -1,15 +1,16 @@
 import React from 'react'
 import { useState } from "react";
 import Cookies from "js-cookie";
+import axios from "axios";
 
 export default function Signup() {
     const [user, setUser] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [confirmPassword, setConfirmPassword] = useState("");
+    const [newsletter, setNewsletter] = useState(false);
+    // const [confirmPassword, setConfirmPassword] = useState("");
 
-    const token = "fSFBIbI3XtZyF79i";
-    Cookies.set("token", token);
+    // Cookies.set("token", token);
 
     const handleUserChange = event => {
         const value = event.target.value;
@@ -26,20 +27,31 @@ export default function Signup() {
         setPassword(value);
     };
 
-    const handleConfirmPasswordChange = event => {
-        const value = event.target.value;
-        setConfirmPassword(value);
-    };
+    // const handleConfirmPasswordChange = event => {
+    //     const value = event.target.value;
+    //     setConfirmPassword(value);
+    // };
 
-    const handleSubmit = event => {
+    const handleSubmit = async event => {
         event.preventDefault(); // Pour empêcher le navigateur de changer de page lors de la soumission du formulaire
-        if (password === confirmPassword) {
+        // if (password === confirmPassword) {
+        // } else {
+        //     alert("mot de passe différents")
+        // }
 
-        } else {
-            alert("mot de passe différents")
+        try {
+            const response = await axios.post("https://lereacteur-vinted-api.herokuapp.com/user/signup",
+                {
+                    username: user,
+                    email: email,
+                    password: password,
+                    newsletter: newsletter,
+                })
+            console.log("mon putaing de token", response.data)
+        } catch (error) {
+            console.log(error.response)
         }
-    };
-
+    }
     return (
         <div className="form-signup">
             <h1>Vous inscrire</h1>
@@ -63,23 +75,21 @@ export default function Signup() {
                     value={password}
                     onChange={handlePasswordChange} />
                 <input
-                    placeholder="1eg6H3*f7sn0"
-                    type="password"
-                    name="confirmPassword"
-                    value={confirmPassword}
-                    onChange={handleConfirmPasswordChange} />
+                    type="checkbox"
+                    name="newsletter"
+                    onClick={() => {
+                        setNewsletter = (!newsletter)
+                    }} />
 
-                <input type="submit" value="Submit" onClick={() => {
-                    Cookies.set("token", token);
-                }} />
+                <input type="submit" value="Submit" />
             </form>
-            <button
+            {/* <button
                 onClick={() => {
                     console.log(Cookies.get("token", token));
                 }}
             >
                 Get Token Value
-            </button>
+            </button> */}
         </div>
     )
 
