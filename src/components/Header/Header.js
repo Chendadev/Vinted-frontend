@@ -7,7 +7,9 @@ export default function Header({ token, setUser }) {
     return (
         <div className="header">
             <div className="header-left">
-                <img src={headerLogo} alt="logo vinted" className="logo" />
+                <Link to="/">
+                    <img src={headerLogo} alt="logo vinted" className="logo" />
+                </Link>
             </div>
             {token === null ? (
                 <div className="header-right">
