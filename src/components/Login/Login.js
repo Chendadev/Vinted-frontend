@@ -1,10 +1,14 @@
+import axios from "axios";
 import React from 'react'
 import { useState } from "react";
-import "../Login/Login.scss"
+import { useNavigate } from "react-router-dom";
+import "./Login.scss"
 
-export default function Login() {
+export default function Login({ setUser }) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+
+    const navigate = useNavigate();
 
     const handleEmailChange = event => {
         const value = event.target.value;
@@ -16,9 +20,26 @@ export default function Login() {
         setPassword(value);
     };
 
-    const handleSubmit = event => {
-        event.preventDefault(); // Pour empêcher le navigateur de changer de page lors de la soumission du formulaire
-        console.log(email, password);
+    const handleLogin = async event => {
+        try {
+            event.preventDefault();
+            const response = await axios.post("https://lereacteur-vinted-api.herokuapp.com/user/login",
+                {
+                    email: email,
+                    password: password
+                }
+            );
+
+            console.log(response.data);
+            if (response.data.token) {
+                setUser(response.data.token); // setUser(token) donc le token est truthy donc :
+                // Le user peut être redirigé vers :  
+                navigate("/"); // page d'accueil
+            }
+
+        } catch (error) {
+            console.log(error.message);
+        }
     };
     return (
         <div className="container-header">
@@ -27,10 +48,10 @@ export default function Login() {
                     <h1>Se connecter</h1>
                 </div>
                 <div className="form">
-                    <form onSubmit={handleSubmit}>
+                    <form onSubmit={handleLogin}>
                         <input
                             placeholder="jean_dupont@lereacteur.io"
-                            type="text"
+                            type="email"
                             name="email"
                             value={email}
                             onChange={handleEmailChange} />

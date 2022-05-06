@@ -1,20 +1,22 @@
 import React from 'react'
-import { useState } from "react";
-import Cookies from "js-cookie";
 import axios from "axios";
+
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../Signup/Signup.scss"
 
-export default function Signup() {
-    const [user, setUser] = useState("");
+export default function Signup({ setUser }) {
+    const [user, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [newsletter, setNewsletter] = useState(false);
     // const [confirmPassword, setConfirmPassword] = useState("");
 
+    const [errorMessage, setErrorMessage] = useState("");
+
     const handleUserChange = event => {
         const value = event.target.value;
-        setUser(value);
+        setUsername(value);
     };
 
     const handleEmailChange = event => {
@@ -33,40 +35,40 @@ export default function Signup() {
     // };
 
     const navigate = useNavigate()
-    const handleSubmit = async event => {
-        event.preventDefault(); // Pour empêcher le navigateur de changer de page lors de la soumission du formulaire
-        // if (password === confirmPassword) {
-        // } else {
-        //     alert("mot de passe différents")
-        // }
 
+    const handleSignup = async event => {
         try {
-            const response = await axios.post("https://lereacteur-vinted-api.herokuapp.com/user/signup",
+            event.preventDefault();
+            // reset du message d'erreur à chaque tentative de connexion
+            setErrorMessage("");
+
+            const response = await axios.post(
+                "https://lereacteur-vinted-api.herokuapp.com/user/signup",
                 {
                     username: user,
                     email: email,
                     password: password,
                     newsletter: newsletter,
-                })
-            if (response.data.token !== null) {
-                const newToken = response.data.token;
-                const in30Minutes = 1 / 48;
-                Cookies.set("token", newToken, { // mon cookie nommé token
-                    expires: in30Minutes
-                });
+                }
+            );
+            if (response.data) {
+                console.log("Le compte a été crée avec succès");
+                setUser(response.data.token) // On cible le token généré par la création du compte
+                navigate("/") // Redirection vers la page d'accueil en statut "connecté"
             }
-            console.log(Cookies.get("token"));
 
-            navigate("/login")
         } catch (error) {
-            console.log(error.response)
+            console.log(error.response.status);
+            if (error.response.status === 409) {
+                setErrorMessage("Cet email existe déjà !")
+            }
         }
     }
     return (
         <div className="container">
             <div className="form-signup">
                 <h1>Vous inscrire</h1>
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={handleSignup}>
                     <input
                         placeholder="jdupont09"
                         type="text"
@@ -74,7 +76,7 @@ export default function Signup() {
                         value={user}
                         onChange={handleUserChange} />
                     <input
-                        placeholder="jean_dupont@lereacteur.io"
+                        placeholder="jean_dupont@gmail.com"
                         type="text"
                         name="email"
                         value={email}
@@ -88,19 +90,12 @@ export default function Signup() {
                     <input
                         type="checkbox"
                         name="newsletter"
-                        onClick={() => {
-                            setNewsletter = (!newsletter)
-                        }} />
+                        value={newsletter}
+                        onChange={setNewsletter} />
 
-                    <input type="submit" value="Submit" />
+                    <input type="submit" value="S'inscrire" />
+                    <p className="error">{errorMessage}</p>
                 </form>
-                {/* <button
-                onClick={() => {
-                    console.log(Cookies.get("token", token));
-                }}
-            >
-                Get Token Value
-            </button> */}
             </div>
         </div>
 

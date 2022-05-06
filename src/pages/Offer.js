@@ -14,7 +14,7 @@ export default function Offer() {
             try {
                 const response = await axios.get(`https://lereacteur-vinted-api.herokuapp.com/offer/${id}`);
                 setData(response.data);
-                console.log("oulele", response) // ne pas faire de clg sur un state, here data !!
+                console.log("data Offer :", response) // ne pas faire de clg sur un state, here data !!
                 setIsLoading(false);
             } catch (error) {
                 console.log(error);
