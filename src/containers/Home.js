@@ -26,7 +26,6 @@ export default function Home() {
     return isLoading === true ? (<div>En cours de chargement ...</div>) :
         (
             <div className="home">
-                <h1>Bienvenue sur l'accueil</h1>
                 {data.offers.map((offer, index) => {
                     const id = offer._id;
                     // console.log("yakoila", offer)
