@@ -3,6 +3,7 @@ import { useState } from "react";
 import Cookies from "js-cookie";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import "../Signup/Signup.scss"
 
 export default function Signup() {
     const [user, setUser] = useState("");
@@ -62,44 +63,47 @@ export default function Signup() {
         }
     }
     return (
-        <div className="form-signup">
-            <h1>Vous inscrire</h1>
-            <form onSubmit={handleSubmit}>
-                <input
-                    placeholder="jdupont09"
-                    type="text"
-                    name="user"
-                    value={user}
-                    onChange={handleUserChange} />
-                <input
-                    placeholder="jean_dupont@lereacteur.io"
-                    type="text"
-                    name="email"
-                    value={email}
-                    onChange={handleEmailChange} />
-                <input
-                    placeholder="1eg6H3*f7sn0"
-                    type="password"
-                    name="password"
-                    value={password}
-                    onChange={handlePasswordChange} />
-                <input
-                    type="checkbox"
-                    name="newsletter"
-                    onClick={() => {
-                        setNewsletter = (!newsletter)
-                    }} />
+        <div className="container">
+            <div className="form-signup">
+                <h1>Vous inscrire</h1>
+                <form onSubmit={handleSubmit}>
+                    <input
+                        placeholder="jdupont09"
+                        type="text"
+                        name="user"
+                        value={user}
+                        onChange={handleUserChange} />
+                    <input
+                        placeholder="jean_dupont@lereacteur.io"
+                        type="text"
+                        name="email"
+                        value={email}
+                        onChange={handleEmailChange} />
+                    <input
+                        placeholder="1eg6H3*f7sn0"
+                        type="password"
+                        name="password"
+                        value={password}
+                        onChange={handlePasswordChange} />
+                    <input
+                        type="checkbox"
+                        name="newsletter"
+                        onClick={() => {
+                            setNewsletter = (!newsletter)
+                        }} />
 
-                <input type="submit" value="Submit" />
-            </form>
-            {/* <button
+                    <input type="submit" value="Submit" />
+                </form>
+                {/* <button
                 onClick={() => {
                     console.log(Cookies.get("token", token));
                 }}
             >
                 Get Token Value
             </button> */}
+            </div>
         </div>
+
     )
 
 }

@@ -5,8 +5,8 @@ import About from "./containers/About";
 import Offer from "./containers/Offer";
 import NotFound from "./containers/NotFound";
 import Header from "./containers/Header/Header";
-import Signup from "./containers/Signup";
-import Login from "./containers/Login";
+import Signup from "./containers/Signup/Signup";
+import Login from "./containers/Login/Login";
 
 function App() {
   return (
