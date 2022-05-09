@@ -13,7 +13,7 @@ import NotFound from "./pages/NotFound";
 import Signup from "./components/Signup/Signup";
 import Login from "./components/Login/Login";
 import Home from "./components/Home/Home";
-import Sale from "./components/Sale/Sale";
+import Publish from "./components/Publish/Publish";
 
 function App() {
   const [token, setToken] = useState(Cookies.get("userToken") || null);
@@ -40,7 +40,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup setUser={setUser} />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
-          <Route path="/sale" element={<Sale />} />
+          <Route path="/offer/publish" element={<Publish />} />
           <Route path="/about" element={<About />} />
           <Route path="/offer/:id" element={<Offer />} />
           <Route path="*" element={<NotFound />} />
