@@ -22,6 +22,7 @@ export default function Header({ token, setUser }) {
                         <div className="user-button">
                             <Link to="/signup"><button>S'inscrire</button></Link>
                             <Link to="/login"><button>Se connecter</button></Link>
+                            <Link to="/sale"><button className="sale-button">Vends maintenant</button></Link>
                         </div>
                     </div>
                 ) : (
@@ -47,10 +48,7 @@ export default function Header({ token, setUser }) {
                     <span>À propos</span>
                     <span>Notre plateforme</span>
                 </div>
-                <div className="header-elements">
-                    <img src={bannerImg} alt="sell banner" className="banner" />
-                    {/* <img src={effectSvg} alt="paper effect banner" className="paper-effect" /> */}
-                </div>
+                {/* banner image place */}
             </div>
         </div>
     )
