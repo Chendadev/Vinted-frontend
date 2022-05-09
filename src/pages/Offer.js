@@ -27,14 +27,17 @@ export default function Offer() {
         isLoading ? (<p>en cours</p>) : (
             <>
                 <div className="picture_offer">
-                    {data.product_pictures.map((picture, index) => {
-                        // console.log(picture);
-                        return (
+                    {/* {data.product_pictures.map((picture, index) => { */}
+                    {/* return ( */}
 
-                            <img src={picture.secure_url} alt="" />
+                    <div>
+                        <img
+                            src={data.product_image.secure_url}
+                        />
+                    </div>
 
-                        );
-                    })}
+                    {/* );
+                    })} */}
                 </div>
 
                 {data.product_details.map((infos, num) => {

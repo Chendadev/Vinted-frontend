@@ -1,6 +1,7 @@
 import "./Publish.scss"
 import axios from "axios";
 import { useState } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
 import Cookies from "js-cookie";
 
 export default function Publish() {
@@ -18,6 +19,7 @@ export default function Publish() {
     const [data, setData] = useState(null);
     const [isPictureSending, setIsPictureSending] = useState(false);
 
+    const navigate = useNavigate();
     const token = Cookies.get("userToken")
     const handleSubmitPost = async event => {
         event.preventDefault();
@@ -47,7 +49,7 @@ export default function Publish() {
                 }
             );
             setData(response.data);
-
+            navigate("/");
             console.log(response.data);
         } catch (error) {
             if (error.response.status === 500) {
@@ -151,11 +153,11 @@ export default function Publish() {
                     }}
                 />
                 <input type="submit" value="ajouter" />
-                {isPictureSending === true ? (
+                {/* {isPictureSending === true ? (
                     <div>Image en cours d'upload</div>
                 ) : (
                     data && <img src={data.secure_url} alt="" />
-                )}
+                )} */}
             </form>
         </div>
 
