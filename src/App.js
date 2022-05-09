@@ -7,12 +7,12 @@ import Cookies from "js-cookie";
 import Header from "./components/Header/Header";
 
 // pages : 
-import Home from "./pages/Home";
 import About from "./pages/About";
 import Offer from "./pages/Offer";
 import NotFound from "./pages/NotFound";
 import Signup from "./components/Signup/Signup";
 import Login from "./components/Login/Login";
+import Home from "./components/Home/Home";
 
 function App() {
   const [token, setToken] = useState(Cookies.get("userToken") || null);
