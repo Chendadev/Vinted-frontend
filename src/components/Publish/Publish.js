@@ -1,11 +1,12 @@
 import "./Publish.scss"
 import axios from "axios";
 import { useState } from "react";
+import Cookies from "js-cookie";
 
 export default function Publish() {
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
-    const [price, setPrice] = useState("");
+    const [price, setPrice] = useState(Number);
     const [condition, setCondition] = useState("");
     const [city, setCity] = useState("");
     const [brand, setBrand] = useState("");
@@ -17,6 +18,7 @@ export default function Publish() {
     const [data, setData] = useState(null);
     const [isPictureSending, setIsPictureSending] = useState(false);
 
+    const token = Cookies.get("userToken")
     const handleSubmitPost = async event => {
         event.preventDefault();
         setIsPictureSending(true);
@@ -33,20 +35,30 @@ export default function Publish() {
         formData.append("color", color);
         formData.append("picture", picture);
 
-        const response = await axios.post(
-            "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
-            formData,
-            {
-                headers: {
-                    authorization: "token",
-                },
-            }
-        );
-        setData(response.data);
-        setIsPictureSending(false);
+        try {
+            const response = await axios.post(
+                "https://lereacteur-vinted-api.herokuapp.com/offer/publish",
+                formData,
+                {
+                    headers: {
+                        authorization: `Bearer ${token}`,
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
+            setData(response.data);
 
-        console.log(response.data);
-    }
+            console.log(response.data);
+        } catch (error) {
+            if (error.response.status === 500) {
+                console.error("An error occurred");
+            } else {
+                console.error(error.response.data.msg);
+            }
+        }
+        setIsPictureSending(false);
+    };
+
     return (
         <div className="container">
             <h1>Vends tes articles</h1>
@@ -129,24 +141,22 @@ export default function Publish() {
                 <input
                     type="file"
                     onChange={(event) => {
-
                         setPicture(event.target.files[0]);
                     }}
                 />
                 <input
                     type="checkbox"
-                    onChange={(event) => {
+                    onClick={(event) => {
                         setExchange(false);
                     }}
                 />
-                <input type="submit" value="Sauvegarder" />
+                <input type="submit" value="ajouter" />
+                {isPictureSending === true ? (
+                    <div>Image en cours d'upload</div>
+                ) : (
+                    data && <img src={data.secure_url} alt="" />
+                )}
             </form>
-
-            {isPictureSending === true ? (
-                <div>Image en cours d'upload</div>
-            ) : (
-                data && <img src={data.secure_url} alt="" />
-            )}
         </div>
 
     )

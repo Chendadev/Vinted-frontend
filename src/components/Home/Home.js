@@ -31,7 +31,7 @@ export default function Home() {
                     const id = offer._id;
                     // console.log("yakoila", offer)
                     return (
-                        <Link to={`/offer/${id}`}>
+                        <Link key={index} to={`/offer/${id}`}>
                             <div className="card">
                                 {offer.product_pictures[0] ?
                                     <img src={offer.product_pictures[0].secure_url} />
