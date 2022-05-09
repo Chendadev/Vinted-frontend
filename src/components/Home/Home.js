@@ -11,11 +11,12 @@ import {
 export default function Home() {
     const [data, setData] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get("https://lereacteur-vinted-api.herokuapp.com/offers");
+                const response = await axios.get(`https://lereacteur-vinted-api.herokuapp.com/offers?limit=10&page=${page}`);
                 // console.log("voir data", response)
                 setData(response.data);
                 setIsLoading(false);
@@ -24,7 +25,7 @@ export default function Home() {
             }
         };
         fetchData();
-    }, [])
+    }, [page])
 
     return isLoading === true ? (<div>En cours de chargement ...</div>) :
         (
@@ -69,6 +70,21 @@ export default function Home() {
 
                         )
                     })}
+                </div>
+                <div className="button-pagination">
+                    {page < 2 ?
+                        (null) : (
+                            <button onClick={() => { setPage(page - 1) }}>
+                                page précédente
+                            </button>
+                        )
+                    }
+                    <p>{page}</p>
+
+                    <button onClick={() => { setPage(page + 1) }}>
+                        page suivante
+                    </button>
+
                 </div>
             </div >
         )

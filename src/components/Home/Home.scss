@@ -14,3 +14,16 @@ img {
   // border: solid 8px green;
   margin: 5px;
 }
+
+.button-pagination {
+  display: flex;
+  justify-content: center;
+  button {
+    background-color: #037682;
+    border: none;
+    padding: 10px;
+    border-radius: 4px;
+    color: white;
+    margin: 0 5px;
+  }
+}
