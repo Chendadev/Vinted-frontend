@@ -1,7 +1,6 @@
 import './Header.scss';
 import { Link, useNavigate } from "react-router-dom";
 import headerLogo from "../../assets/img/logo_vinted.svg";
-import bannerImg from "../../assets/img/banner-header.png";
 import effectSvg from "../../assets/img/effect-header.svg";
 
 export default function Header({ token, setUser }) {

@@ -68,7 +68,7 @@
 
 .header-down {
   // background-color: purple;
-  height: 495px;
+  // height: 495px;
 }
 .nav {
   // background-color: pink;
@@ -90,15 +90,9 @@
 .header-elements {
   display: flex;
   justify-content: flex-end;
-  img {
-    height: 460px;
-  }
-}
-
-.banner {
-  position: absolute;
-  width: 100%;
-  object-fit: cover;
+  // img {
+  //   height: 460px;
+  // }
 }
 
 .paper-effect {

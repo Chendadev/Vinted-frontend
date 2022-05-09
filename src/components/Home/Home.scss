@@ -1,3 +1,16 @@
-.home {
-  margin-top: 625px;
+.offers {
+  // border: solid 10px red;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+img {
+  width: 195px;
+  height: 325px;
+  object-fit: cover;
+}
+
+.articles {
+  // border: solid 8px green;
+  margin: 5px;
 }
