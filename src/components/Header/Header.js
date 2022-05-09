@@ -22,19 +22,22 @@ export default function Header({ token, setUser }) {
                         <div className="user-button">
                             <Link to="/signup"><button>S'inscrire</button></Link>
                             <Link to="/login"><button>Se connecter</button></Link>
-                            <Link to="/sale"><button className="sale-button">Vends maintenant</button></Link>
                         </div>
                     </div>
                 ) : (
-                    <button
-                        onClick={() => {
-                            // Je me déconnecte et je redirige l'utilsateur vers la home page
-                            setUser(null);
-                            navigate("/");
-                        }}
-                    >
-                        Se déconnecter
-                    </button>
+                    <div>
+                        <Link to="/sale"><button className="sale-button">Vends maintenant</button></Link>
+                        <button
+                            onClick={() => {
+                                // Je me déconnecte et je redirige l'utilsateur vers la home page
+                                setUser(null);
+                                navigate("/");
+                            }}
+                        >
+                            Se déconnecter
+                        </button>
+                    </div>
+
                 )}
             </div>
             <div className="header-down">
