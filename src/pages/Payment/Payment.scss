@@ -1,0 +1,99 @@
+.container {
+  background-color: #eaedee;
+  display: flex;
+}
+
+.bloc {
+  margin: 0 350px;
+  margin-top: 30px;
+  background-color: white;
+  height: 460px;
+  width: 500px;
+
+  // display: flex;
+  // flex-direction: column;
+  // align-items: center;
+  // justify-content: center;
+  padding: 20px;
+}
+
+.title {
+  font-size: 13px;
+  color: rgb(150, 145, 145);
+}
+
+.infos-bloc {
+  margin: 25px 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  p {
+    font-size: 13px;
+    color: rgb(150, 145, 145);
+  }
+}
+
+.infos-bloc-elements {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+  font-size: 15px;
+  color: rgb(150, 145, 145);
+}
+.prices {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.6;
+  font-size: 15px;
+  color: rgb(150, 145, 145);
+}
+.amount-bloc {
+  display: flex;
+  justify-content: space-between;
+  border-top: solid #f2f2f2 1px;
+  font-size: 14px;
+  color: black;
+  // background-color: red;
+  p {
+    display: flex;
+    // justify-content: space-around;
+    margin: 20px;
+    font-weight: bold;
+  }
+}
+.reminder-text {
+  // color: rgb(103, 98, 98);
+  color: black;
+  font-size: 13px;
+
+  p {
+    text-align: justify;
+  }
+
+  span {
+    font-weight: bold;
+  }
+}
+
+.bloc-payment {
+  height: 125px;
+  //   background-color: palegreen;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top: solid #f2f2f2 1px;
+  button {
+    background-color: rgb(77, 183, 77);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    width: 460px;
+    height: 40px;
+    cursor: pointer;
+  }
+}
+
+.payment-button {
+  background-color: palegoldenrod;
+}

@@ -38,7 +38,7 @@ export default function Home() {
                     {data.offers.map((offer, index) => {
                         const id = offer._id;
 
-                        // console.log("yakoila", offer)
+                        // console.log(offer)
                         return (
                             // image header à faire disparaitre quand on quitte la page d'accueil Home : 
 

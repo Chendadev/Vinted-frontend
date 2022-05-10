@@ -5,15 +5,18 @@ import Cookies from "js-cookie";
 
 // components : 
 import Header from "./components/Header/Header";
-
-// pages : 
-import About from "./pages/About";
-import Offer from "./pages/Offer";
-import NotFound from "./pages/NotFound";
 import Signup from "./components/Signup/Signup";
 import Login from "./components/Login/Login";
 import Home from "./components/Home/Home";
 import Publish from "./components/Publish/Publish";
+
+// pages : 
+import About from "./pages/About";
+import Offer from "./pages/Offer";
+import Payment from "./pages/Payment/Payment";
+import NotFound from "./pages/NotFound";
+
+import CheckoutForm from "./pages/CheckoutForm/CheckoutForm";
 
 function App() {
   const [token, setToken] = useState(Cookies.get("userToken") || null);
@@ -40,6 +43,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup setUser={setUser} />} />
           <Route path="/login" element={<Login setUser={setUser} />} />
+          <Route path="/payment" element={<Payment />} />
+          <Route path="/checkout" element={<CheckoutForm />} />
           <Route path="/offer/publish" element={<Publish />} />
           <Route path="/about" element={<About />} />
           <Route path="/offer/:id" element={<Offer />} />

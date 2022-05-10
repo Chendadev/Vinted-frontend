@@ -26,6 +26,7 @@ export default function Header({ token, setUser }) {
                 ) : (
                     <div>
                         <Link to="/offer/publish"><button className="sale-button">Vends maintenant</button></Link>
+                        <Link to="/payment"><button className="payment-button">Acheter</button></Link>
                         <button
                             onClick={() => {
                                 // Je me déconnecte et je redirige l'utilsateur vers la home page
